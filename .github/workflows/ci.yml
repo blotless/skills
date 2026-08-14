@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  skill-pack:
+    name: Skill package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Required files
+        run: |
+          test -f README.md
+          test -f README.ru.md
+          test -f LICENSE
+          test -f remove-ai-marks/SKILL.md
+          test -d remove-ai-marks/references
+          test -f remove-ai-marks/references/ethics.md
+          grep -q 'blotless' remove-ai-marks/SKILL.md
+          ! grep -E 'go run \./cli|\./bin/blotless' remove-ai-marks/SKILL.md
+      - name: No workspace paths in skill
+        run: |
+          if grep -REn 'go run \./cli|\./bin/blotless' remove-ai-marks; then
+            echo "skill must call blotless on PATH only"
+            exit 1
+          fi
