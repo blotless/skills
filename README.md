@@ -23,8 +23,12 @@ cp -R remove-ai-marks ~/.agent/skills/remove-ai-marks
 
 Binary modules: [blotless/cli](https://github.com/blotless/cli), [blotless/engine](https://github.com/blotless/engine).
 
+## Checks
+
+```bash
+task preflight   # structure + PATH guard + bilingual READMEs
+```
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
-<!-- bilingual skill pack -->

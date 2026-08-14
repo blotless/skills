@@ -1,0 +1,52 @@
+# blotless/skills — pre-release checks for the agent skill pack
+# Requires: task (https://taskfile.dev). No Go toolchain needed.
+
+version: "3"
+
+tasks:
+  default:
+    desc: List tasks
+    cmds:
+      - task --list
+
+  structure:
+    desc: Required files present
+    cmds:
+      - test -f README.md
+      - test -f README.ru.md
+      - test -f LICENSE
+      - test -f remove-ai-marks/SKILL.md
+      - test -d remove-ai-marks/references
+      - test -f remove-ai-marks/references/ethics.md
+      - test -f remove-ai-marks/references/mark-classes.md
+      - test -f remove-ai-marks/references/removal-matrix.md
+      - test -f remove-ai-marks/references/vendor-notes.md
+      - 'echo "structure: ok"'
+  path-guard:
+    desc: Forbid workspace-relative CLI invocations in skill instructions
+    cmds:
+      - |
+        if grep -REn 'BIN=\./bin/blotless|go run \./cli/cmd' remove-ai-marks; then
+          echo "ERROR: skill must call blotless on PATH only"
+          exit 1
+        fi
+        echo "path-guard: ok"
+
+  bilingual:
+    desc: Both language READMEs mention blotless
+    cmds:
+      - grep -q 'blotless' README.md
+      - grep -q 'blotless' README.ru.md
+      - grep -q 'blotless' remove-ai-marks/SKILL.md
+      - 'echo "bilingual: ok"'
+  preflight:
+    desc: Pre-release gate for the skill pack
+    cmds:
+      - task: structure
+      - task: path-guard
+      - task: bilingual
+      - 'echo "skills preflight: OK"'
+  ci:
+    desc: Same as preflight (matches GitHub Actions)
+    cmds:
+      - task: preflight
