@@ -26,3 +26,5 @@ Binary modules: [blotless/cli](https://github.com/blotless/cli), [blotless/engin
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+<!-- bilingual skill pack -->
