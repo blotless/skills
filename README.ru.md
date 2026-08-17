@@ -1,28 +1,23 @@
-# blotless skills
+<h1 align="center">blotless/skills</h1>
+
+<p align="center">
+  Скиллы агента для CLI <strong>blotless</strong>. Не Go-модуль.
+</p>
 
 <p align="center">
   <b>Язык:</b> <a href="README.md">English</a> | Русский
 </p>
 
-Отдельные скиллы агента для CLI **blotless**. Это не Go-модуль — скопируйте папку в каталог скиллов агента. Всегда вызывайте `blotless` с `PATH` (не `./bin` и не `go run ./cli/...`).
+---
 
-## Установка
+Всегда вызывайте `blotless` с **PATH**.
 
 ```bash
 CGO_ENABLED=0 go install github.com/blotless/cli/cmd/blotless@latest
-
 cp -R remove-ai-marks ~/.agent/skills/remove-ai-marks
-# также: .cursor/skills/  .grok/skills/
 ```
 
-## Пакет
+Layer B: `blotless clean --layer-b`. WASM: см. [ast README.ru](https://github.com/blotless/ast/blob/main/README.ru.md).
 
-| Папка | Скилл |
-|--------|--------|
-| [`remove-ai-marks/`](remove-ai-marks/) | Inspect → clean Layer A/Files → Layer B (агент = модель по умолчанию) |
-
-Бинарник: [blotless/cli](https://github.com/blotless/cli), библиотека: [blotless/engine](https://github.com/blotless/engine).
-
-## Лицензия
-
-MIT — см. [LICENSE](LICENSE).
+Документы: [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [ROADMAP.md](ROADMAP.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).  
+Полное описание — в [README.md](README.md).
