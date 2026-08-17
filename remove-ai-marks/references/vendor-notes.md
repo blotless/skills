@@ -19,7 +19,11 @@ This project implements the **hard-bound / Unicode / rewrite** side. Pixel/audio
 
 **Mapping:** Layer A + Layer B + container/image C2PA strip.
 
-**Mapping:** Layer B paraphrase / humanize against sampling watermarks.
+**Mapping:** Layer B paraphrase / humanize against sampling watermarks; AST transform (`blotless/ast`) for code token sequences.
+
+## Attribution vs SynthID
+
+`blotless inspect` **likely agent** / origin confidence is heuristic (stamps, C2PA, soft fingerprints). It is **not** SynthID verification. Absence of a named agent does not mean human-only content.
 
 ## OpenAI / ChatGPT
 

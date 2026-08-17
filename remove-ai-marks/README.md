@@ -7,4 +7,13 @@ CGO_ENABLED=0 go install github.com/blotless/cli/cmd/blotless@latest
 cp -R . ~/.agent/skills/remove-ai-marks
 ```
 
-See [SKILL.md](SKILL.md).
+Typical flow:
+
+```bash
+blotless inspect .
+blotless clean . --write --aggressive --nfkc
+blotless clean . --write --layer-b                 # AST transform (Go/Python)
+blotless clean . --write --llm=ollama --layer-b    # optional paraphrase
+```
+
+See [SKILL.md](SKILL.md). Ethics: [references/ethics.md](references/ethics.md).

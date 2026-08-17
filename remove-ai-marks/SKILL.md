@@ -88,7 +88,7 @@ After Layer A, **always propose** a statistical-mark pass for natural language.
 4. Layer A again on the rewrite  
 5. Residual risk: short/predictable = lower; long high-entropy prose = higher  
 
-**Default Layer B backend is this agent** (you rewrite):
+**Default Layer B backend is this agent** (you rewrite prose). For **code**, `--layer-b` also runs offline AST transform (Go/Python built-in):
 
 ```bash
 blotless clean draft.md --write --aggressive --nfkc --layer-b
@@ -99,10 +99,13 @@ blotless rewrite draft.md --backend print-prompt --strength paraphrase
 # Local Ollama only if the user asks
 blotless rewrite draft.md -o draft.rewritten.md --backend ollama --model llama3.2 --strength paraphrase
 blotless clean draft.md --write --llm=ollama --layer-b --strength paraphrase
+
+# Extra language (WASM plugin — local path only). Tutorial:
+# https://github.com/blotless/ast#add-a-language-via-wasm-no-go-required
+blotless clean ./src --write --layer-b --ast-wasm rust=./blotless_rust_transform.wasm
 ```
 
-`--layer-b` without `--llm` is not an error: A+Files still clean; B is listed for
-the agent. `inspect` never starts Ollama.
+`--layer-b` without `--llm` is not an error: A+Files still clean; AST transform still runs for Go/Python/WASM; prose B is listed for the agent. `inspect` never starts Ollama.
 
 ### Rewrite prompts (when you are the model)
 

@@ -22,7 +22,9 @@ Mappable to the paper “edit-based watermarking.”
 
 Bias next-token sampling toward a pseudo-random green list / score (Kirchenbauer, SynthID-Text / Tournament sampling). Signal is in **word choice**, not metadata.
 
-**Removal:** Layer B rewrite (`--llm=ollama --strength paraphrase|humanize|code`). Best-effort; no gold certification without vendor detector/key.
+**Removal:** Layer B rewrite (`--llm=ollama --strength paraphrase|humanize|code`) and/or **AST transform** (`blotless clean --layer-b` for Go/Python; optional `--ast-wasm` plugins). Best-effort; no gold certification without vendor detector/key.
+
+See also `github.com/blotless/ast` — rename locals / reorder imports & private fields; WASM drivers for other languages.
 
 ### 3. Data-driven / Backdoor
 
